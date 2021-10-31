@@ -13,14 +13,9 @@ class App extends Component {
   }
   addNewPlayer = (newPlayer) => {
     const players = [...this.state.players, newPlayer];
-    return this.setState(
-      {
-        players,
-      },
-      () => {
-        console.log(this.state.players, "---players");
-      }
-    );
+    return this.setState({
+      players,
+    });
   };
   render() {
     const { classOptions, raceOptions } = this.state;

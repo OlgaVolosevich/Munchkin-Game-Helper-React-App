@@ -26,9 +26,9 @@ class Form extends Component {
   addPlayerHandler = () => {
     const player = { ...this.state.player };
     this.props.addNewPlayer(player);
-  /*  this.resetInputValues()*/
+    this.resetInputValues();
   };
- /* resetInputValues = () => {
+  resetInputValues = () => {
     const player = {
       name: "",
       gameClass: this.props.classOptions[0],
@@ -37,10 +37,8 @@ class Form extends Component {
     };
     this.setState({
       player,
-    }, () => {
-        console.log(this.state.player)
     });
-  };*/
+  };
   render() {
     const { classOptions, raceOptions } = this.props;
     const { name, gameClass, race } = this.state.player;
@@ -59,7 +57,7 @@ class Form extends Component {
         <select
           id="race"
           name="race"
-          defaultValue={race}
+          value={race}
           onChange={this.changeHandler}
         >
           {raceOptions.map((option, index) => (
@@ -70,7 +68,7 @@ class Form extends Component {
         <select
           id="gameClass"
           name="gameClass"
-          defaultValue={gameClass}
+          value={gameClass}
           onChange={this.changeHandler}
         >
           {classOptions.map((option, index) => (
