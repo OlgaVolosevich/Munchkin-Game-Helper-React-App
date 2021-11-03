@@ -1,6 +1,7 @@
 import "./App.css";
 import { Component } from "react";
 import Form from "./components/Form";
+import PlayerCard from "./components/PlayerCard";
 
 class App extends Component {
   constructor(props) {
@@ -9,17 +10,31 @@ class App extends Component {
       classOptions: ["Нет класса", "Волшебник", "Вор", "Клирик", "Воин"],
       raceOptions: ["Нет рассы", "Эльф", "Хафлинг", "Дварф"],
       players: [],
+      isGameStarted: false,
     };
   }
-  addNewPlayer = (newPlayer) => {
+  addNewPlayer = (playerInfo) => {
+    const newPlayer = { ...playerInfo, level: 1 };
     const players = [...this.state.players, newPlayer];
     return this.setState({
       players,
     });
   };
+
+  startGame = () => {
+    this.setState({
+      isGameStarted: true,
+    });
+  };
   render() {
-    const { classOptions, raceOptions } = this.state;
-    return (
+    const { classOptions, raceOptions, isGameStarted } = this.state;
+    return isGameStarted ? (
+      <div className="players">
+        {this.state.players.map((player, index) => (
+          <PlayerCard player={player} key={index} />
+        ))}
+      </div>
+    ) : (
       <main>
         <h1>Добавьте игроков</h1>
         <Form
@@ -27,7 +42,7 @@ class App extends Component {
           raceOptions={raceOptions}
           addNewPlayer={this.addNewPlayer}
         />
-        <button>Начать игру</button>
+        <button onClick={this.startGame}>Начать игру</button>
       </main>
     );
   }
