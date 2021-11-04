@@ -1,12 +1,11 @@
-import PlayerCard from "../PlayerCard";
+import PlayersCards from "./PlayersCards";
+import PlayersList from "./PlayersList";
 function Players(props) {
-  const { players } = props;
-  return (
-    <div className="players">
-      {players.map((player, index) => (
-        <PlayerCard player={player} key={index} />
-      ))}
-    </div>
+  const { players, isGameStarted } = props;
+  return isGameStarted ? (
+    <PlayersCards players={players} />
+  ) : (
+    <PlayersList players={players} />
   );
 }
 

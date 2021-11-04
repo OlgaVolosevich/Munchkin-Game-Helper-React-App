@@ -16,21 +16,3 @@ function GenderInput(props) {
 }
 
 export default GenderInput;
-/*
- <label htmlFor="genderM">Мужской</label>
-      <input
-        type="radio"
-        id="genderM"
-        name="gender"
-        value="мужской"
-        onChange={inputHandler}
-      />
-      <label htmlFor="genderF">Женский</label>
-      <input
-        type="radio"
-        id="genderF"
-        name="gender"
-        value="женский"
-        onChange={inputHandler}
-      />
-*/

@@ -32,14 +32,17 @@ class App extends Component {
   };
   render() {
     const { gameInfo, isGameStarted, players } = this.state;
-    return isGameStarted ? (
-      <Players players={players} />
-    ) : (
-      <GamePreset
-        gameInfo={gameInfo}
-        addNewPlayer={this.addNewPlayer}
-        startGame={this.startGame}
-      />
+    return (
+      <>
+        {!isGameStarted && (
+          <GamePreset
+            gameInfo={gameInfo}
+            addNewPlayer={this.addNewPlayer}
+            startGame={this.startGame}
+          />
+        )}
+        <Players players={players} isGameStarted={isGameStarted} />
+      </>
     );
   }
 }
