@@ -24,24 +24,38 @@ class App extends Component {
       players,
     });
   };
-
-  startGame = () => {
+  deletePlayer = (index) => {
+    const players = [...this.state.players];
+    players.splice(index, 1);
     this.setState({
-      isGameStarted: true,
+      players,
     });
   };
+  checkPlayersNumber = () => this.state.players.length >= 2;
+  startGame = () => {
+    if (this.checkPlayersNumber()) {
+      this.setState({
+        isGameStarted: true,
+      });
+    }
+  };
+
   render() {
     const { gameInfo, isGameStarted, players } = this.state;
     return (
       <>
-        {!isGameStarted && (
+        {(!isGameStarted || !players.length) && (
           <GamePreset
             gameInfo={gameInfo}
             addNewPlayer={this.addNewPlayer}
             startGame={this.startGame}
           />
         )}
-        <Players players={players} isGameStarted={isGameStarted} />
+        <Players
+          players={players}
+          isGameStarted={isGameStarted}
+          deletePlayer={this.deletePlayer}
+        />
       </>
     );
   }

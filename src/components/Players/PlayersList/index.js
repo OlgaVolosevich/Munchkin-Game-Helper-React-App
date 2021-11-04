@@ -1,9 +1,11 @@
 function PlayersList(props) {
-  const { players } = props;
+  const { players, deletePlayer } = props;
   return (
     <ul>
       {players.map((player, index) => (
-        <li key={index}>{player.name} <i>X</i></li>
+        <li key={index}>
+          {player.name} <i onClick={() => deletePlayer(index)}>&times;</i>
+        </li>
       ))}
     </ul>
   );

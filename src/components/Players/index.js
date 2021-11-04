@@ -1,11 +1,11 @@
 import PlayersCards from "./PlayersCards";
 import PlayersList from "./PlayersList";
 function Players(props) {
-  const { players, isGameStarted } = props;
+  const { players, isGameStarted, deletePlayer } = props;
   return isGameStarted ? (
-    <PlayersCards players={players} />
+    <PlayersCards players={players} deletePlayer={deletePlayer} />
   ) : (
-    <PlayersList players={players} />
+    <PlayersList players={players} deletePlayer={deletePlayer} />
   );
 }
 
