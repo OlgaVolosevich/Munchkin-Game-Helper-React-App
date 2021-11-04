@@ -1,14 +1,18 @@
 import "./App.css";
 import { Component } from "react";
-import Form from "./components/Form";
-import PlayerCard from "./components/PlayerCard";
+import Players from "./components/Players";
+import GamePreset from "./components/GamePreset";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      classOptions: ["Нет класса", "Волшебник", "Вор", "Клирик", "Воин"],
-      raceOptions: ["Нет рассы", "Эльф", "Хафлинг", "Дварф"],
+      gameInfo: {
+        classOptions: ["Нет класса", "Волшебник", "Вор", "Клирик", "Воин"],
+        raceOptions: ["Нет рассы", "Эльф", "Хафлинг", "Дварф"],
+        defaultClass: "Нет класса",
+        defaultRace: "Нет рассы",
+      },
       players: [],
       isGameStarted: false,
     };
@@ -27,23 +31,15 @@ class App extends Component {
     });
   };
   render() {
-    const { classOptions, raceOptions, isGameStarted } = this.state;
+    const { gameInfo, isGameStarted, players } = this.state;
     return isGameStarted ? (
-      <div className="players">
-        {this.state.players.map((player, index) => (
-          <PlayerCard player={player} key={index} />
-        ))}
-      </div>
+      <Players players={players} />
     ) : (
-      <main>
-        <h1>Добавьте игроков</h1>
-        <Form
-          classOptions={classOptions}
-          raceOptions={raceOptions}
-          addNewPlayer={this.addNewPlayer}
-        />
-        <button onClick={this.startGame}>Начать игру</button>
-      </main>
+      <GamePreset
+        gameInfo={gameInfo}
+        addNewPlayer={this.addNewPlayer}
+        startGame={this.startGame}
+      />
     );
   }
 }

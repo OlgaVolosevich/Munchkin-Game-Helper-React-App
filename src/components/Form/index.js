@@ -1,4 +1,7 @@
 import { Component } from "react";
+import GenderInput from "./GenderInput";
+import NameInput from "./NameInput";
+import SelectInput from "./SelectInput";
 
 class Form extends Component {
   constructor(props) {
@@ -6,8 +9,14 @@ class Form extends Component {
     this.state = {
       player: {
         name: "",
-        gameClass: this.props.classOptions[0],
-        race: this.props.raceOptions[0],
+        gameClass: this.props.gameInfo.defaultClass,
+        gameRace: this.props.gameInfo.defaultRace,
+        gender: null,
+      },
+      emptyPlayer: {
+        name: "",
+        gameClass: this.props.gameInfo.defaultClass,
+        gameRace: this.props.gameInfo.defaultRace,
         gender: null,
       },
     };
@@ -23,76 +32,69 @@ class Form extends Component {
       player,
     });
   };
-  addPlayerHandler = () => {
+  buttonHandler = () => {
     const player = { ...this.state.player };
     this.props.addNewPlayer(player);
     this.resetInputValues();
   };
   resetInputValues = () => {
-    const player = {
-      name: "",
-      gameClass: this.props.classOptions[0],
-      race: this.props.raceOptions[0],
-      gender: null,
-    };
+    const player = this.state.emptyPlayer;
     this.setState({
       player,
     });
   };
   render() {
-    const { classOptions, raceOptions } = this.props;
-    const { name, gameClass, race } = this.state.player;
+    const { classOptions, raceOptions } = this.props.gameInfo;
+    const { name, gameClass, gameRace } = this.state.player;
+    const gameOptions = [
+      {
+        title: "Расса",
+        options: [...raceOptions],
+        name: "gameRace",
+        value: gameRace,
+      },
+      {
+        title: "Класс",
+        options: [...classOptions],
+        name: "gameClass",
+        value: gameClass,
+      },
+    ];
+    const genderOptions = [
+      {
+        value: "Мужской",
+        id: "genderM",
+        name: "gender",
+      },
+      {
+        value: "Женский",
+        id: "genderF",
+        name: "gender",
+      },
+    ];
     return (
       <form action="/" name="playerInfo" onSubmit={this.submitHandler}>
-        <label htmlFor="name">Имя</label>
-        <input
-          name="name"
-          id="name"
-          type="text"
-          placeholder="Введите имя"
-          value={name}
-          onChange={this.changeHandler}
-        />
-        <label htmlFor="race">Расса</label>
-        <select
-          id="race"
-          name="race"
-          value={race}
-          onChange={this.changeHandler}
-        >
-          {raceOptions.map((option, index) => (
-            <option key={index}>{option}</option>
-          ))}
-        </select>
-        <label htmlFor="class">Класс</label>
-        <select
-          id="gameClass"
-          name="gameClass"
-          value={gameClass}
-          onChange={this.changeHandler}
-        >
-          {classOptions.map((option, index) => (
-            <option key={index}>{option}</option>
-          ))}
-        </select>
-        <p>Пол</p>
-        <label htmlFor="genderM">Мужской</label>
-        <input
-          type="radio"
-          id="genderM"
-          name="gender"
-          value="male"
-          onChange={this.changeHandler}
-        />
-        <label htmlFor="genderF">Женский</label>
-        <input
-          type="radio"
-          id="genderF"
-          name="gender"
-          value="female"
-          onChange={this.changeHandler}
-        />
-        <button onClick={this.addPlayerHandler}>Добавить игрока</button>
+        <NameInput name={name} inputHandler={this.changeHandler} />
+        {gameOptions.map(({ title, options, name, value }, index) => (
+          <SelectInput
+            key={index}
+            title={title}
+            name={name}
+            value={value}
+            inputHandler={this.changeHandler}
+            options={options}
+          />
+        ))}
+        {genderOptions.map(({ value, id, name }, index) => (
+          <GenderInput
+            key={index}
+            inputHandler={this.changeHandler}
+            value={value}
+            id={id}
+            name={name}
+          />
+        ))}
+        <button onClick={this.buttonHandler}>Добавить игрока</button>
       </form>
     );
   }
