@@ -12,13 +12,17 @@ class App extends Component {
         raceOptions: ["Нет рассы", "Эльф", "Хафлинг", "Дварф"],
         defaultClass: "Нет класса",
         defaultRace: "Нет рассы",
+        minLevel: 1,
+        winLevel: 10,
       },
       players: [],
       isGameStarted: false,
+      winner: null,
     };
   }
   addNewPlayer = (playerInfo) => {
-    const newPlayer = { ...playerInfo, level: 1 };
+    const { minLevel } = this.state.gameInfo;
+    const newPlayer = { ...playerInfo, level: minLevel };
     const players = [...this.state.players, newPlayer];
     return this.setState({
       players,
@@ -39,7 +43,25 @@ class App extends Component {
       });
     }
   };
-
+  regulateLevel = (event, index) => {
+    const isLevelReducing = event.target.classList.contains("level-reducer");
+    const { minLevel, winLevel } = this.state.gameInfo;
+    const players = [...this.state.players];
+    const player = players[index];
+    if (isLevelReducing) {
+      player.level > minLevel && player.level--;
+    } else {
+      player.level < winLevel && player.level++;
+    }
+    if (player.level === winLevel) {
+      this.setState({
+        winner: player,
+      });
+    }
+    this.setState({
+      players,
+    });
+  };
   render() {
     const { gameInfo, isGameStarted, players } = this.state;
     return (
@@ -55,6 +77,7 @@ class App extends Component {
           players={players}
           isGameStarted={isGameStarted}
           deletePlayer={this.deletePlayer}
+          regulateLevel={this.regulateLevel}
         />
       </>
     );

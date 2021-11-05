@@ -73,7 +73,7 @@ class Form extends Component {
       },
     ];
     return (
-      <form action="/" name="playerInfo" onSubmit={this.submitHandler}>
+      <form action="/" method="POST" name="playerInfo" onSubmit={this.submitHandler}>
         <NameInput name={name} inputHandler={this.changeHandler} />
         {gameOptions.map(({ title, options, name, value }, index) => (
           <SelectInput
