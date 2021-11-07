@@ -1,7 +1,6 @@
 import "./styles.css";
 import React from "react";
 import { Component } from "react";
-import GenderInput from "./GenderInput";
 import NameInput from "./NameInput";
 import SelectInput from "./SelectInput";
 
@@ -21,6 +20,20 @@ class Form extends Component {
         gameRace: this.props.gameInfo.defaultRace,
         gender: null,
       },
+      /*      genderOptions : [
+        {
+          value: "Мужчина",
+          id: "genderM",
+          name: "gender",
+          checked: false,
+        },
+        {
+          value: "Женщина",
+          id: "genderF",
+          name: "gender",
+          checked: false,
+        },
+      ],*/
     };
     this.errorMessage = React.createRef();
     this.nameInput = React.createRef();
@@ -71,18 +84,6 @@ class Form extends Component {
         value: gameClass,
       },
     ];
-    const genderOptions = [
-      {
-        value: "Мужчина",
-        id: "genderM",
-        name: "gender",
-      },
-      {
-        value: "Женщина",
-        id: "genderF",
-        name: "gender",
-      },
-    ];
     return (
       <form
         className="form"
@@ -107,17 +108,6 @@ class Form extends Component {
             options={options}
           />
         ))}
-        <div className="form__gender-input">
-          {genderOptions.map(({ value, id, name }, index) => (
-            <GenderInput
-              key={index}
-              inputHandler={this.changeHandler}
-              value={value}
-              id={id}
-              name={name}
-            />
-          ))}
-        </div>
         <button className="form__add-player-btn" onClick={this.buttonHandler}>
           Добавить игрока
         </button>
