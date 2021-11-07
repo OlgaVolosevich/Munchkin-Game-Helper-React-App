@@ -1,3 +1,5 @@
+import "./styles.css";
+import React from "react";
 import { Component } from "react";
 import GenderInput from "./GenderInput";
 import NameInput from "./NameInput";
@@ -20,12 +22,16 @@ class Form extends Component {
         gender: null,
       },
     };
+    this.errorMessage = React.createRef();
+    this.nameInput = React.createRef();
   }
   submitHandler(event) {
     event.preventDefault();
   }
-
   changeHandler = (event) => {
+    if (event.target.id === "name" && event.target.value) {
+      this.errorMessage.current.style.visibility = "hidden";
+    }
     const player = { ...this.state.player };
     player[event.target.name] = event.target.value;
     this.setState({
@@ -33,9 +39,14 @@ class Form extends Component {
     });
   };
   buttonHandler = () => {
-    const player = { ...this.state.player };
-    this.props.addNewPlayer(player);
-    this.resetInputValues();
+    if (this.state.player.name) {
+      const player = { ...this.state.player };
+      this.props.addNewPlayer(player);
+      this.resetInputValues();
+    } else {
+      this.errorMessage.current.style.visibility = "visible";
+      this.nameInput.current.focus();
+    }
   };
   resetInputValues = () => {
     const player = this.state.emptyPlayer;
@@ -62,19 +73,30 @@ class Form extends Component {
     ];
     const genderOptions = [
       {
-        value: "Мужской",
+        value: "Мужчина",
         id: "genderM",
         name: "gender",
       },
       {
-        value: "Женский",
+        value: "Женщина",
         id: "genderF",
         name: "gender",
       },
     ];
     return (
-      <form action="/" method="POST" name="playerInfo" onSubmit={this.submitHandler}>
-        <NameInput name={name} inputHandler={this.changeHandler} />
+      <form
+        className="form"
+        action="/"
+        method="POST"
+        name="playerInfo"
+        onSubmit={this.submitHandler}
+      >
+        <NameInput
+          name={name}
+          inputHandler={this.changeHandler}
+          errorMessage={this.errorMessage}
+          inputRef={this.nameInput}
+        />
         {gameOptions.map(({ title, options, name, value }, index) => (
           <SelectInput
             key={index}
@@ -85,16 +107,20 @@ class Form extends Component {
             options={options}
           />
         ))}
-        {genderOptions.map(({ value, id, name }, index) => (
-          <GenderInput
-            key={index}
-            inputHandler={this.changeHandler}
-            value={value}
-            id={id}
-            name={name}
-          />
-        ))}
-        <button onClick={this.buttonHandler}>Добавить игрока</button>
+        <div className="form__gender-input">
+          {genderOptions.map(({ value, id, name }, index) => (
+            <GenderInput
+              key={index}
+              inputHandler={this.changeHandler}
+              value={value}
+              id={id}
+              name={name}
+            />
+          ))}
+        </div>
+        <button className="form__add-player-btn" onClick={this.buttonHandler}>
+          Добавить игрока
+        </button>
       </form>
     );
   }

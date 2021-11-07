@@ -2,8 +2,7 @@ function GenderInput(props) {
   const { inputHandler, id, value, name } = props;
 
   return (
-    <>
-      <label htmlFor={id}>{value}</label>
+    <div className="form__gender-input__item">
       <input
         type="radio"
         id={id}
@@ -11,7 +10,8 @@ function GenderInput(props) {
         value={value}
         onChange={inputHandler}
       />
-    </>
+      <label htmlFor={id}>{value}</label>
+    </div>
   );
 }
 

@@ -35,9 +35,9 @@ class App extends Component {
       players,
     });
   };
-  checkPlayersNumber = () => this.state.players.length >= 2;
+  /*checkPlayersNumber = () => this.state.players.length >= 2;*/
   startGame = () => {
-    if (this.checkPlayersNumber()) {
+    if (this.state.players.length >= 2) {
       this.setState({
         isGameStarted: true,
       });

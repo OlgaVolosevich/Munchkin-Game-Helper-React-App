@@ -1,0 +1,119 @@
+.preset-container {
+  width: 300px;
+  max-width: 100%;
+}
+
+.preset-container .header {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.preset-container .form {
+  border: 10px solid #4b1615;
+  border-radius: 20px;
+  padding: 20px 15px;
+  background-color: #fff4e9;
+}
+
+.preset-container .form__name-input {
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.preset-container .form__name-input input {
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 5px solid #4b1615;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.preset-container .form__name-input input:focus {
+  outline: none;
+}
+
+.preset-container .form__name-input .form__error-message {
+  visibility: hidden;
+  position: absolute;
+  color: red;
+}
+
+.preset-container .form__add-player-btn {
+  font-size: 16px;
+  width: 100%;
+  padding: 10px 0;
+  background-color: #fff4e9;
+  border: 3px solid #4b1615;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.preset-container .form__select-input {
+  padding-bottom: 10px;
+}
+
+.preset-container .form__select-input select {
+  font-size: 16px;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+  background-color: #fff4e9;
+  border: 2px solid #4b1615;
+  padding: 5px;
+}
+
+.preset-container .form__gender-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.preset-container .form__gender-input__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.preset-container .form__gender-input__item input {
+  display: none;
+}
+
+.preset-container .form__gender-input__item input:checked + label::before {
+  height: 5px;
+  width: 5px;
+  border: 5px solid #4b1615;
+}
+
+.preset-container .form__gender-input__item label {
+  position: relative;
+  cursor: pointer;
+}
+
+.preset-container .form__gender-input__item label::before {
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 2px solid #4b1615;
+  border-radius: 50%;
+  left: -20px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+/*# sourceMappingURL=styles.css.map */
