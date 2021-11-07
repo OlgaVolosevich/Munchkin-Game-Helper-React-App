@@ -21,23 +21,25 @@ class App extends Component {
     };
   }
   addNewPlayer = (playerInfo) => {
+    const id = Date.now();
     const { minLevel } = this.state.gameInfo;
-    const newPlayer = { ...playerInfo, level: minLevel };
+    const newPlayer = { ...playerInfo, id, level: minLevel };
     const players = [...this.state.players, newPlayer];
     return this.setState({
       players,
     });
   };
-  deletePlayer = (index) => {
-    const players = [...this.state.players];
-    players.splice(index, 1);
+  deletePlayer = (id) => {
+    const players = [...this.state.players].filter(
+      (player) => player.id !== id
+    );
     this.setState({
       players,
     });
   };
-  /*checkPlayersNumber = () => this.state.players.length >= 2;*/
+  checkPlayersNumber = () => this.state.players.length >= 2;
   startGame = () => {
-    if (this.state.players.length >= 2) {
+    if (this.checkPlayersNumber()) {
       this.setState({
         isGameStarted: true,
       });

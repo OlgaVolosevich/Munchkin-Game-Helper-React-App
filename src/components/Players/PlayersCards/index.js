@@ -4,11 +4,11 @@ const imgPlaceholder =
 function PlayersCards(props) {
   const { players, deletePlayer, regulateLevel } = props;
   const playersCards = players.map(
-    ({ name, gameRace, gameClass, level, gender }, index) => {
+    ({ name, gameRace, gameClass, level, gender, id }, index) => {
       return (
-        <div className="players-cards__item" key={index}>
+        <div className="players-cards__item" key={id}>
           <p>
-            {name} <i onClick={() => deletePlayer(name)}>&times;</i>
+            {name} <i onClick={() => deletePlayer(id)}>&times;</i>
           </p>
           <img src={imgPlaceholder} alt="player" />
           <p>

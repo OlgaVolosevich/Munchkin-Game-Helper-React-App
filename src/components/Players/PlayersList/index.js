@@ -1,8 +1,8 @@
 function PlayersList(props) {
   const { players, deletePlayer } = props;
-  const listItems = players.map((player, index) => (
-    <li key={index}>
-      {player.name} <i onClick={() => deletePlayer(index)}>&times;</i>
+  const listItems = players.map(({id, name}) => (
+    <li key={id}>
+      {name} <i onClick={() => deletePlayer(id)}>&times;</i>
     </li>
   ));
   return <ul>{listItems}</ul>;
