@@ -4,7 +4,7 @@ const imgPlaceholder =
 function PlayersCards(props) {
   const { players, deletePlayer, regulateLevel } = props;
   const playersCards = players.map(
-    ({ name, gameRace, gameClass, level, gender, id }, index) => {
+    ({ name, gameRace, gameClass, level, gender, id }) => {
       return (
         <div className="players-cards__item" key={id}>
           <p>
@@ -19,14 +19,14 @@ function PlayersCards(props) {
             Уровень:{" "}
             <i
               className="level-reducer"
-              onClick={(event) => regulateLevel(event, index)}
+              onClick={(event) => regulateLevel(event, id)}
             >
               -
             </i>{" "}
             {level}{" "}
             <i
               className="level-adder"
-              onClick={(event) => regulateLevel(event, index)}
+              onClick={(event) => regulateLevel(event, id)}
             >
               +
             </i>

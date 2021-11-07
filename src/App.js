@@ -45,11 +45,11 @@ class App extends Component {
       });
     }
   };
-  regulateLevel = (event, index) => {
+  regulateLevel = (event, id) => {
     const isLevelReducing = event.target.classList.contains("level-reducer");
     const { minLevel, winLevel } = this.state.gameInfo;
     const players = [...this.state.players];
-    const player = players[index];
+    const player = players.filter((player) => player.id === id)[0];
     if (isLevelReducing) {
       player.level > minLevel && player.level--;
     } else {
