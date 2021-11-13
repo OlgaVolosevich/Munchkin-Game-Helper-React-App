@@ -13,7 +13,7 @@ function Players(props) {
     <PlayersList players={players} deletePlayer={deletePlayer} />
   );
   return (
-    <div className="players-container">
+    <div className={`players-container${isGameStarted ? " solo" : ""}`}>
       <h2 className="header">Игроки</h2>
       {players.length ? content : <p className="empty-list">Список игроков пуст</p>}
     </div>

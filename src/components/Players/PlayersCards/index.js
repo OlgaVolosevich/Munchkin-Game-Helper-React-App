@@ -1,36 +1,38 @@
-const imgPlaceholder =
-  "https://noahandcodaycare.com/wp-content/uploads/user-placeholder.jpg";
+/*const imgPlaceholder =
+  "https://noahandcodaycare.com/wp-content/uploads/user-placeholder.jpg";*/
+/*import "./../../../fonts/icomoon/style.css"*/
+import "../../../fonts/icomoon/style.css";
 
 function PlayersCards(props) {
   const { players, deletePlayer, regulateLevel } = props;
   const playersCards = players.map(
-    ({ name, gameRace, gameClass, level, gender, id }) => {
+    ({ name, gameRace, gameClass, level, id }) => {
       return (
         <div className="players-cards__item" key={id}>
-          <p>
-            {name} <i onClick={() => deletePlayer(id)}>&times;</i>
-          </p>
-          <img src={imgPlaceholder} alt="player" />
-          <p>
-            Расса: {gameRace.toLowerCase()}, Класс: {gameClass.toLowerCase()}
-          </p>
-          <p>Пол: {gender ? gender.toLowerCase() : "не указан"}</p>
-          <p>
-            Уровень:{" "}
-            <i
-              className="level-reducer"
-              onClick={(event) => regulateLevel(event, id)}
-            >
-              -
-            </i>{" "}
-            {level}{" "}
-            <i
-              className="level-adder"
-              onClick={(event) => regulateLevel(event, id)}
-            >
-              +
-            </i>
-          </p>
+          <div className="players-cards__item__name">
+            <p>{name}</p>
+            <span className="icon-bin" onClick={() => deletePlayer(id)}></span>
+            {/*<img className="players-cards__item__avatar" src={imgPlaceholder} alt="player" />*/}
+          </div>
+          <div className="players-cards__item__game-info">
+            <button className="race-btn">{gameRace}</button>
+            <button className="class-btn">{gameClass}</button>
+            <button className="gender-btn">Пол</button>
+          </div>
+          <div className="players-cards__item__level">
+            <small className="level-label">Уровень</small>
+            <p className="level-regulation-container">
+              <span
+                className="level-reducer icon-minus"
+                onClick={(event) => regulateLevel(event, id)}
+              ></span>{" "}
+              <span className="level-container">{level} </span>
+              <span
+                className="level-adder icon-plus"
+                onClick={(event) => regulateLevel(event, id)}
+              ></span>
+            </p>
+          </div>
         </div>
       );
     }
