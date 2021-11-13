@@ -2,27 +2,25 @@ import "./App.css";
 import { Component } from "react";
 import Players from "./components/Players";
 import GamePreset from "./components/GamePreset";
+import WarningModal from "./components/WarningModal";
+import gameInfo from "./gameInfo";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameInfo: {
-        classOptions: ["Нет класса", "Волшебник", "Вор", "Клирик", "Воин"],
-        raceOptions: ["Нет рассы", "Эльф", "Хафлинг", "Дварф"],
-        defaultClass: "Нет класса",
-        defaultRace: "Нет рассы",
-        minLevel: 1,
-        winLevel: 10,
-      },
       players: [],
       isGameStarted: false,
       winner: null,
+      warning: {
+        isNeeded: false,
+        value: "",
+      },
     };
   }
   addNewPlayer = (playerInfo) => {
     const id = Date.now();
-    const { minLevel } = this.state.gameInfo;
+    const { minLevel } = gameInfo;
     const newPlayer = { ...playerInfo, id, level: minLevel };
     const players = [...this.state.players, newPlayer];
     return this.setState({
@@ -33,21 +31,54 @@ class App extends Component {
     const players = [...this.state.players].filter(
       (player) => player.id !== id
     );
+    if (!players.length) {
+      let { isGameStarted } = this.state;
+      isGameStarted = false;
+      this.setState({
+        players,
+        isGameStarted,
+      });
+    } else {
+      this.setState({
+        players,
+      });
+    }
+  };
+  checkPlayersNumber = () =>
+    this.state.players.length >= gameInfo.minPlayersNumber;
+
+  showWarning = (text) => {
+    const warning = { ...this.state.warning };
+    warning.isNeeded = true;
+    warning.value = text || "";
     this.setState({
-      players,
+      warning,
     });
   };
-  checkPlayersNumber = () => this.state.players.length >= 2;
-  startGame = () => {
-    if (this.checkPlayersNumber()) {
-      this.setState({
-        isGameStarted: true,
-      });
+  closeWarning = () => {
+    const warning = { ...this.state.warning };
+    warning.isNeeded = false;
+    this.setState({
+      warning,
+    });
+  };
+  manageGame = () => {
+    const arePlayersEnough = this.checkPlayersNumber();
+    if (arePlayersEnough) {
+      this.setState((state) => ({
+        isGameStarted: !state.isGameStarted,
+      }));
+    } else {
+      const { players } = this.state;
+      const warningText = `Чтобы начать игру добавьте ещё минимум ${
+        gameInfo.minPlayersNumber - players.length
+      } игрока`;
+      this.showWarning(warningText);
     }
   };
   regulateLevel = (event, id) => {
     const isLevelReducing = event.target.classList.contains("level-reducer");
-    const { minLevel, winLevel } = this.state.gameInfo;
+    const { minLevel, winLevel } = gameInfo;
     const players = [...this.state.players];
     const player = players.filter((player) => player.id === id)[0];
     if (isLevelReducing) {
@@ -65,7 +96,8 @@ class App extends Component {
     });
   };
   render() {
-    const { gameInfo, isGameStarted, players } = this.state;
+    const { isGameStarted, players, warning } = this.state;
+    const { isNeeded } = warning;
     return (
       <>
         {(!isGameStarted || !players.length) && (
@@ -81,6 +113,14 @@ class App extends Component {
           deletePlayer={this.deletePlayer}
           regulateLevel={this.regulateLevel}
         />
+        {!isGameStarted && (
+          <button className="start-game-btn" onClick={this.manageGame}>
+            Начать игру
+          </button>
+        )}
+        {isNeeded && (
+          <WarningModal text={warning.value} closeWarning={this.closeWarning} />
+        )}
       </>
     );
   }

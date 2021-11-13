@@ -14,7 +14,29 @@ body {
     background-size: cover;
     height: 100vh;
     width: 100vw;
-    display: flex;
-    justify-content: center;
     font-size: 16px;
+    display: grid;
+    justify-content: center;
+    align-items: flex-start;
+}
+#root {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 100px;
+
+}
+.start-game-btn {
+    grid-column: 1/3;
+    margin: 15px 0;
+    font-size: 16px;
+    width: 100%;
+    padding: 20px;
+    background-color: #fff4e9;
+    border: 3px solid #4b1615;
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: #4b1615;
+        color: #fff4e9;
+    }
 }
