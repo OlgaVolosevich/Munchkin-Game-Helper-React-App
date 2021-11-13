@@ -1,3 +1,17 @@
+$mainRed: #4b1615;
+$mainBeige: #fff4e9;
+
+@mixin btn {
+    background-color: $mainBeige;
+    border: 3px solid $mainRed;
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: $mainRed;
+        color: $mainBeige;
+    }
+}
+
 .warning {
     width: 300px;
     height: 200px;
@@ -5,8 +19,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff4e9;
-    border: 3px solid #4b1615;
+    background-color: $mainBeige;
+    border: 3px solid $mainRed;
     border-radius: 20px;
     display: flex;
     justify-content: center;
@@ -17,16 +31,8 @@
         padding-bottom: 30px;
     }
     &__close-btn {
-        font-size: 16px;
         width: 100%;
         padding: 10px;
-        background-color: #fff4e9;
-        border: 3px solid #4b1615;
-        border-radius: 10px;
-        cursor: pointer;
-        &:hover {
-            background-color: #4b1615;
-            color: #fff4e9;
-        }
+        @include btn();
     }
 }

@@ -4,7 +4,7 @@ function GamePreset(props) {
   const { gameInfo, addNewPlayer } = props;
   return (
     <div className="preset-container">
-      <h1 className="header">Добавьте игроков</h1>
+      <h2 className="header">Добавьте игроков</h2>
       <Form addNewPlayer={addNewPlayer} gameInfo={gameInfo} />
     </div>
   );

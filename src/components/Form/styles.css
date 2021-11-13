@@ -15,11 +15,6 @@
   max-width: 100%;
 }
 
-.preset-container .header {
-  margin-top: 30px;
-  text-align: center;
-}
-
 .preset-container .form {
   min-width: 300px;
   border: 10px solid #4b1615;
@@ -58,7 +53,6 @@
 }
 
 .preset-container .form__add-player-btn {
-  font-size: 16px;
   width: 100%;
   padding: 10px 0;
   background-color: #fff4e9;

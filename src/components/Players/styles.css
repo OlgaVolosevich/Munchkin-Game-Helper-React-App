@@ -12,11 +12,6 @@
   padding: 0 20px;
 }
 
-.players-container .header {
-  margin-top: 30px;
-  text-align: center;
-}
-
 .players-container .empty-list {
   text-align: center;
   color: #4b1615cc;

@@ -1,12 +1,21 @@
+$mainRed: #4b1615;
+$mainBeige: #fff4e9;
+@mixin btn {
+    background-color: $mainBeige;
+    border: 3px solid $mainRed;
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: $mainRed;
+        color: $mainBeige;
+    }
+}
+
 .players-container {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     padding: 0 20px;
-    .header {
-        margin-top: 30px;
-        text-align: center;
-    }
     .empty-list {
         text-align: center;
         color: #4b1615cc;
@@ -18,7 +27,7 @@
             display: flex;
             justify-content: space-between;
             padding: 10px 0;
-            border-bottom: 2px solid #4b1615;
+            border-bottom: 2px solid $mainRed;
         }
     }
     &__discard-icon {

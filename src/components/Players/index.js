@@ -14,7 +14,7 @@ function Players(props) {
   );
   return (
     <div className="players-container">
-      <h1 className="header">Игроки</h1>
+      <h2 className="header">Игроки</h2>
       {players.length ? content : <p className="empty-list">Список игроков пуст</p>}
     </div>
   );
