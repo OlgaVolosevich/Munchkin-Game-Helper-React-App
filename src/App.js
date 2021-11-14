@@ -95,6 +95,14 @@ class App extends Component {
       players,
     });
   };
+  editPlayerInfo = (id, changingField, value) => {
+    const players = [...this.state.players];
+    const player = players.filter((player) => player.id === id)[0];
+    player[changingField] = value;
+    this.setState({
+      players,
+    });
+  };
   render() {
     const { isGameStarted, players, warning } = this.state;
     const { isNeeded } = warning;
@@ -112,6 +120,7 @@ class App extends Component {
           isGameStarted={isGameStarted}
           deletePlayer={this.deletePlayer}
           regulateLevel={this.regulateLevel}
+          editPlayerInfo={this.editPlayerInfo}
         />
         {!isGameStarted && (
           <button className="start-game-btn" onClick={this.manageGame}>

@@ -5,11 +5,23 @@ $mainBeige: #fff4e9;
     border: 3px solid $mainRed;
     border-radius: 10px;
     cursor: pointer;
+    color: $mainRed;
     &:hover {
         background-color: $mainRed;
         color: $mainBeige;
     }
 }
+
+@mixin modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $mainBeige;
+    border: 3px solid $mainRed;
+    border-radius: 20px;
+}
+
 .players-container {
     display: flex;
     justify-content: flex-start;
@@ -95,5 +107,29 @@ $mainBeige: #fff4e9;
                 font-weight: bold;
             }
         }
+    }
+}
+
+.edit-modal {
+   padding: 30px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+    @include modal();
+    &__close-btn {
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: $mainRed;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+    }
+
+    &__gender-btn {
+        @include btn();
+        padding: 10px 20px;
+        width: 100%;
+        user-select: none;
     }
 }

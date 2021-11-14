@@ -1,6 +1,4 @@
 .warning {
-  width: 300px;
-  height: 200px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -9,6 +7,8 @@
   background-color: #fff4e9;
   border: 3px solid #4b1615;
   border-radius: 20px;
+  width: 300px;
+  height: 200px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -36,6 +36,7 @@
   border: 3px solid #4b1615;
   border-radius: 10px;
   cursor: pointer;
+  color: #4b1615;
 }
 
 .warning__close-btn:hover {

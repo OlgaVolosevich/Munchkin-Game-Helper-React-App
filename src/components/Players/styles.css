@@ -97,6 +97,7 @@
   border: 3px solid #4b1615;
   border-radius: 10px;
   cursor: pointer;
+  color: #4b1615;
 }
 
 .players-cards__item__game-info .race-btn:hover, .players-cards__item__game-info .class-btn:hover, .players-cards__item__game-info .gender-btn:hover {
@@ -135,5 +136,56 @@
   font-size: 1.5rem;
   padding: 0 5px;
   font-weight: bold;
+}
+
+.edit-modal {
+  padding: 30px 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 5px;
+          column-gap: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #fff4e9;
+  border: 3px solid #4b1615;
+  border-radius: 20px;
+}
+
+.edit-modal__close-btn {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #4b1615;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.edit-modal__gender-btn {
+  background-color: #fff4e9;
+  border: 3px solid #4b1615;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #4b1615;
+  padding: 10px 20px;
+  width: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.edit-modal__gender-btn:hover {
+  background-color: #4b1615;
+  color: #fff4e9;
 }
 /*# sourceMappingURL=styles.css.map */
