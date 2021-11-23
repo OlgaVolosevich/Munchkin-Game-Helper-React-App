@@ -104,6 +104,8 @@ class App extends Component {
       this.setState({
         winner: player,
       });
+      const message = `Победитель: манчкин ${player.name}!`;
+      this.showWarning(message);
     }
     this.setState({
       players,

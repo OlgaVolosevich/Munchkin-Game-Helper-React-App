@@ -6,7 +6,6 @@ import SelectInput from "../../../Form/SelectInput";
 
 class PlayerGameInfo extends Component {
   constructor(props) {
-    console.log(props);
     super(props);
     this.state = {
       isInfoEdited: false,
