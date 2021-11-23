@@ -66,11 +66,12 @@
   color: #fff4e9;
 }
 
-.preset-container .form__select-input {
+.preset-container .form .select-input {
+  cursor: pointer;
   padding-bottom: 10px;
 }
 
-.preset-container .form__select-input select {
+.preset-container .form .select-input select {
   font-size: 16px;
   width: 100%;
   outline: none;

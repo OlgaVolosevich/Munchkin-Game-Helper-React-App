@@ -20,20 +20,6 @@ class Form extends Component {
         gameRace: this.props.gameInfo.defaultRace,
         gender: null,
       },
-      /*      genderOptions : [
-        {
-          value: "Мужчина",
-          id: "genderM",
-          name: "gender",
-          checked: false,
-        },
-        {
-          value: "Женщина",
-          id: "genderF",
-          name: "gender",
-          checked: false,
-        },
-      ],*/
     };
     this.errorMessage = React.createRef();
     this.nameInput = React.createRef();
@@ -68,7 +54,7 @@ class Form extends Component {
     });
   };
   render() {
-    const { classOptions, raceOptions } = this.props.gameInfo;
+    const { raceOptions, classOptions } = this.props.gameInfo;
     const { name, gameClass, gameRace } = this.state.player;
     const gameOptions = [
       {
@@ -98,7 +84,7 @@ class Form extends Component {
           errorMessage={this.errorMessage}
           inputRef={this.nameInput}
         />
-        {gameOptions.map(({ title, options, name, value }, index) => (
+        {gameOptions.map(({ title, options, value, name }, index) => (
           <SelectInput
             key={index}
             title={title}
