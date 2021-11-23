@@ -5,6 +5,16 @@ import GamePreset from "./components/GamePreset";
 import WarningModal from "./components/WarningModal";
 import gameInfo from "./gameInfo";
 
+const newGameState = {
+  players: [],
+  isGameStarted: false,
+  winner: null,
+  warning: {
+    isNeeded: false,
+    value: "",
+  },
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -19,19 +29,19 @@ class App extends Component {
     };
   }
   addNewPlayer = (playerInfo) => {
-  const arePlayersFull = !this.checkPlayersNumber("max");
+    const arePlayersFull = !this.checkPlayersNumber("max");
     if (!arePlayersFull) {
-    const id = Date.now();
-    const { minLevel } = gameInfo;
-    const newPlayer = { ...playerInfo, id, level: minLevel };
-    const players = [...this.state.players, newPlayer];
-    return this.setState({
-      players,
-    });
-   } else {
-    const warning = `Вы добавили максимальное количество игроков!`;
-    this.showWarning(warning);
-   }
+      const id = Date.now();
+      const { minLevel } = gameInfo;
+      const newPlayer = { ...playerInfo, id, level: minLevel };
+      const players = [...this.state.players, newPlayer];
+      return this.setState({
+        players,
+      });
+    } else {
+      const warning = `Вы добавили максимальное количество игроков!`;
+      this.showWarning(warning);
+    }
   };
   deletePlayer = (id) => {
     const players = [...this.state.players].filter(
@@ -76,7 +86,16 @@ class App extends Component {
       warning,
     });
   };
+  resetGame = () => {
+    this.setState({
+      ...newGameState,
+    });
+  };
   manageGame = () => {
+    const winner = this.state.winner;
+    if (winner) {
+      return this.resetGame();
+    }
     const arePlayersEnough = this.checkPlayersNumber("min");
     if (arePlayersEnough) {
       this.setState((state) => ({
@@ -104,8 +123,7 @@ class App extends Component {
       this.setState({
         winner: player,
       });
-      const message = `Победитель: манчкин ${player.name}!`;
-      this.showWarning(message);
+      this.showWarning();
     }
     this.setState({
       players,
@@ -120,7 +138,7 @@ class App extends Component {
     });
   };
   render() {
-    const { isGameStarted, players, warning } = this.state;
+    const { isGameStarted, players, warning, winner } = this.state;
     const { isNeeded } = warning;
     return (
       <>
@@ -144,7 +162,12 @@ class App extends Component {
           </button>
         )}
         {isNeeded && (
-          <WarningModal text={warning.value} closeWarning={this.closeWarning} />
+          <WarningModal
+            text={warning.value}
+            winner={winner}
+            closeWarning={this.closeWarning}
+            manageGame={this.manageGame}
+          />
         )}
       </>
     );
