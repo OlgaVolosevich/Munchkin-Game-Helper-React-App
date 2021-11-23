@@ -19,6 +19,8 @@ class App extends Component {
     };
   }
   addNewPlayer = (playerInfo) => {
+  const arePlayersFull = !this.checkPlayersNumber("max");
+    if (!arePlayersFull) {
     const id = Date.now();
     const { minLevel } = gameInfo;
     const newPlayer = { ...playerInfo, id, level: minLevel };
@@ -26,6 +28,10 @@ class App extends Component {
     return this.setState({
       players,
     });
+   } else {
+    const warning = `Вы добавили максимальное количество игроков!`;
+    this.showWarning(warning);
+   }
   };
   deletePlayer = (id) => {
     const players = [...this.state.players].filter(
@@ -44,13 +50,21 @@ class App extends Component {
       });
     }
   };
-  checkPlayersNumber = () =>
-    this.state.players.length >= gameInfo.minPlayersNumber;
+  checkPlayersNumber = (number) => {
+    switch (number) {
+      case "min":
+        return this.state.players.length >= gameInfo.minPlayersNumber;
+      case "max":
+        return this.state.players.length < gameInfo.maxPlayersNumber;
+      default:
+        break;
+    }
+  };
 
   showWarning = (text) => {
     const warning = { ...this.state.warning };
     warning.isNeeded = true;
-    warning.value = text || "";
+    warning.value = text || "Упс! Что-то пошло не так!";
     this.setState({
       warning,
     });
@@ -63,14 +77,14 @@ class App extends Component {
     });
   };
   manageGame = () => {
-    const arePlayersEnough = this.checkPlayersNumber();
+    const arePlayersEnough = this.checkPlayersNumber("min");
     if (arePlayersEnough) {
       this.setState((state) => ({
         isGameStarted: !state.isGameStarted,
       }));
     } else {
       const { players } = this.state;
-      const warningText = `Чтобы начать игру добавьте ещё минимум ${
+      const warningText = `Добавьте ещё минимум ${
         gameInfo.minPlayersNumber - players.length
       } игрока`;
       this.showWarning(warningText);
