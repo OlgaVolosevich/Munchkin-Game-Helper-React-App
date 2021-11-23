@@ -1,5 +1,5 @@
 function NameInput(props) {
-  const { name, inputHandler, errorMessage, inputRef } = props;
+  const { name, inputHandler, inputRef, errorMessage } = props;
   return (
     <>
       <div className="form__name-input">

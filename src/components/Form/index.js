@@ -3,22 +3,15 @@ import React from "react";
 import { Component } from "react";
 import NameInput from "./NameInput";
 import SelectInput from "./SelectInput";
+import { emptyPlayer } from "../../defaultStateValues";
+import gameInfo from "../../gameInfo";
 
 class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
       player: {
-        name: "",
-        gameClass: this.props.gameInfo.defaultClass,
-        gameRace: this.props.gameInfo.defaultRace,
-        gender: null,
-      },
-      emptyPlayer: {
-        name: "",
-        gameClass: this.props.gameInfo.defaultClass,
-        gameRace: this.props.gameInfo.defaultRace,
-        gender: null,
+        ...emptyPlayer,
       },
     };
     this.errorMessage = React.createRef();
@@ -48,13 +41,12 @@ class Form extends Component {
     }
   };
   resetInputValues = () => {
-    const player = this.state.emptyPlayer;
     this.setState({
-      player,
+      player: { ...emptyPlayer },
     });
   };
   render() {
-    const { raceOptions, classOptions } = this.props.gameInfo;
+    const { raceOptions, classOptions } = gameInfo;
     const { name, gameClass, gameRace } = this.state.player;
     const gameOptions = [
       {

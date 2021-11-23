@@ -4,28 +4,13 @@ import Players from "./components/Players";
 import GamePreset from "./components/GamePreset";
 import WarningModal from "./components/WarningModal";
 import gameInfo from "./gameInfo";
-
-const newGameState = {
-  players: [],
-  isGameStarted: false,
-  winner: null,
-  warning: {
-    isNeeded: false,
-    value: "",
-  },
-};
+import { newGameState } from "./defaultStateValues";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      players: [],
-      isGameStarted: false,
-      winner: null,
-      warning: {
-        isNeeded: false,
-        value: "",
-      },
+      ...newGameState
     };
   }
   addNewPlayer = (playerInfo) => {
@@ -144,9 +129,7 @@ class App extends Component {
       <>
         {(!isGameStarted || !players.length) && (
           <GamePreset
-            gameInfo={gameInfo}
             addNewPlayer={this.addNewPlayer}
-            startGame={this.startGame}
           />
         )}
         <Players
