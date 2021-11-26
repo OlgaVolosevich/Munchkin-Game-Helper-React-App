@@ -55,7 +55,6 @@ class App extends Component {
         break;
     }
   };
-
   showWarning = (text) => {
     const warning = { ...this.state.warning };
     warning.isNeeded = true;
@@ -124,12 +123,12 @@ class App extends Component {
   };
   render() {
     const { isGameStarted, players, warning, winner } = this.state;
-    const { isNeeded } = warning;
     return (
       <>
         {(!isGameStarted || !players.length) && (
           <GamePreset
             addNewPlayer={this.addNewPlayer}
+            gameInfo={gameInfo}
           />
         )}
         <Players
@@ -144,7 +143,7 @@ class App extends Component {
             Начать игру
           </button>
         )}
-        {isNeeded && (
+        {warning.isNeeded && (
           <WarningModal
             text={warning.value}
             winner={winner}

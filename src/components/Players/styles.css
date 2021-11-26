@@ -133,9 +133,12 @@
 }
 
 .players-cards__item__level .level-container {
+  display: inline-block;
   font-size: 1.5rem;
   padding: 0 5px;
   font-weight: bold;
+  width: 30px;
+  text-align: center;
 }
 
 .edit-modal {
