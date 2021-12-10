@@ -8,6 +8,7 @@ function Players(props) {
     deletePlayer,
     regulateLevel,
     editPlayerInfo,
+    gameInfo,
   } = props;
   const content = isGameStarted ? (
     <PlayersCards
@@ -15,6 +16,7 @@ function Players(props) {
       deletePlayer={deletePlayer}
       regulateLevel={regulateLevel}
       editPlayerInfo={editPlayerInfo}
+      gameInfo={gameInfo}
     />
   ) : (
     <PlayersList players={players} deletePlayer={deletePlayer} />

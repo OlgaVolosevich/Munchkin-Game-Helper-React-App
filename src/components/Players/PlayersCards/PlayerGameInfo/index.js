@@ -1,7 +1,6 @@
 import { Component } from "react";
 import EditorModal from "./EditorModal";
 import GenderInput from "./EditorModal/GenderInput";
-import gameInfo from "../../../../gameInfo";
 import SelectInput from "../../../Form/SelectInput";
 
 class PlayerGameInfo extends Component {
@@ -12,13 +11,13 @@ class PlayerGameInfo extends Component {
       modal: null,
       gameClassOptions: {
         title: "Класс",
-        options: [...gameInfo.classOptions],
+        options: [...props.gameInfo.classOptions],
         name: "gameClass",
         value: this.props.gameClass,
       },
       gameRaceOptions: {
         title: "Расса",
-        options: [...gameInfo.raceOptions],
+        options: [...props.gameInfo.raceOptions],
         name: "gameRace",
         value: this.props.gameRace,
       },
@@ -39,12 +38,11 @@ class PlayerGameInfo extends Component {
     const selectHandler = (event, id, name) => {
       editPlayerInfo(id, name, event.target.value);
       if (event.target.id === "gameClass") {
-        gameClassOptions.value = event.target.value;
         this.setState({
           gameClassOptions,
         });
       } else if (event.target.id === "gameRace") {
-        gameRaceOptions.value = event.target.value;
+        gameRaceOptions.value.first = event.target.value;
         this.setState({
           gameRaceOptions,
         });
@@ -69,7 +67,7 @@ class PlayerGameInfo extends Component {
           id={id}
           title={title}
           name={name}
-          value={value}
+          value={value.first}
           inputHandler={selectHandler}
           options={options}
         />
@@ -86,7 +84,7 @@ class PlayerGameInfo extends Component {
           id={id}
           title={title}
           name={name}
-          value={value}
+          value={value.first}
           inputHandler={selectHandler}
           options={options}
         />
@@ -105,10 +103,10 @@ class PlayerGameInfo extends Component {
     return (
       <div className="players-cards__item__game-info">
         <button className="race-btn" onClick={this.clickHandler}>
-          {gameRace}
+          {gameRace.first}
         </button>
         <button className="class-btn" onClick={this.clickHandler}>
-          {gameClass}
+          {gameClass.first}
         </button>
         <button className="gender-btn" onClick={this.clickHandler}>
           {gender || "Пол не указан"}

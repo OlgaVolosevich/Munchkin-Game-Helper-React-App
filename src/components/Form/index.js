@@ -3,14 +3,13 @@ import React from "react";
 import { Component } from "react";
 import NameInput from "./NameInput";
 import SelectInput from "./SelectInput";
-import { emptyPlayer } from "../../defaultStateValues";
 
 class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
       player: {
-        ...emptyPlayer,
+        ...JSON.parse(JSON.stringify(this.props.emptyPlayer)),
       },
     };
     this.errorMessage = React.createRef();
@@ -24,7 +23,12 @@ class Form extends Component {
       this.errorMessage.current.style.visibility = "hidden";
     }
     const player = { ...this.state.player };
-    player[event.target.name] = event.target.value;
+    if (event.target.name === "gameClass" || event.target.name === "gameRace") {
+      player[event.target.name]["first"] = event.target.value;
+    } else {
+      player[event.target.name] = event.target.value;
+    }
+
     this.setState({
       player,
     });
@@ -41,7 +45,7 @@ class Form extends Component {
   };
   resetInputValues = () => {
     this.setState({
-      player: { ...emptyPlayer },
+      player: { ...JSON.parse(JSON.stringify(this.props.emptyPlayer)) },
     });
   };
   render() {
@@ -52,13 +56,13 @@ class Form extends Component {
         title: "Расса",
         options: [...raceOptions],
         name: "gameRace",
-        value: gameRace,
+        value: gameRace.first,
       },
       {
         title: "Класс",
         options: [...classOptions],
         name: "gameClass",
-        value: gameClass,
+        value: gameClass.first,
       },
     ];
     return (

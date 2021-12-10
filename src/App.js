@@ -4,13 +4,13 @@ import Players from "./components/Players";
 import GamePreset from "./components/GamePreset";
 import WarningModal from "./components/WarningModal";
 import gameInfo from "./gameInfo";
-import { newGameState } from "./defaultStateValues";
+import { newGameState, emptyPlayer } from "./defaultStateValues";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ...newGameState
+      ...newGameState,
     };
   }
   addNewPlayer = (playerInfo) => {
@@ -24,8 +24,8 @@ class App extends Component {
         players,
       });
     } else {
-      const warning = `Вы добавили максимальное количество игроков!`;
-      this.showWarning(warning);
+      const warningText = `Вы добавили максимальное количество игроков!`;
+      this.showWarning(warningText);
     }
   };
   deletePlayer = (id) => {
@@ -116,7 +116,11 @@ class App extends Component {
   editPlayerInfo = (id, changingField, value) => {
     const players = [...this.state.players];
     const player = players.filter((player) => player.id === id)[0];
-    player[changingField] = value;
+    if (changingField === "gameClass" || changingField === "gameRace") {
+      player[changingField]["first"] = value;
+    } else {
+      player[changingField] = value;
+    }
     this.setState({
       players,
     });
@@ -129,6 +133,7 @@ class App extends Component {
           <GamePreset
             addNewPlayer={this.addNewPlayer}
             gameInfo={gameInfo}
+            emptyPlayer={emptyPlayer}
           />
         )}
         <Players
@@ -137,6 +142,7 @@ class App extends Component {
           deletePlayer={this.deletePlayer}
           regulateLevel={this.regulateLevel}
           editPlayerInfo={this.editPlayerInfo}
+          gameInfo={gameInfo}
         />
         {!isGameStarted && (
           <button className="start-game-btn" onClick={this.manageGame}>
