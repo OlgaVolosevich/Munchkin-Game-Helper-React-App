@@ -12,11 +12,11 @@ const emptyPlayer = {
   name: "",
   gameClass: {
     first: "Нет класса",
-    second: null,
+    second: "Нет класса",
   },
   gameRace: {
     first: "Нет рассы",
-    second: null,
+    second: "Нет рассы",
   },
   gender: null,
 };

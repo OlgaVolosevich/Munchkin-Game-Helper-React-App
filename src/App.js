@@ -113,11 +113,19 @@ class App extends Component {
       players,
     });
   };
-  editPlayerInfo = (id, changingField, value) => {
+  editPlayerInfo = (id, changingField, value, flag = "first") => {
     const players = [...this.state.players];
     const player = players.filter((player) => player.id === id)[0];
-    if (changingField === "gameClass" || changingField === "gameRace") {
+    if (
+      (changingField === "gameClass" || changingField === "gameRace") &&
+      flag === "first"
+    ) {
       player[changingField]["first"] = value;
+    } else if (
+      (changingField === "gameClass" || changingField === "gameRace") &&
+      flag === "second"
+    ) {
+      player[changingField]["second"] = value;
     } else {
       player[changingField] = value;
     }

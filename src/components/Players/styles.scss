@@ -75,17 +75,30 @@ $mainBeige: #fff4e9;
             }
         }
         &__game-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
+           /* grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;*/
             row-gap: 5px;
             column-gap: 5px;
             .race-btn, .class-btn, .gender-btn {
+                position: relative;
                 padding: 5px 0;
                 @include btn();
+                .icon-plus, .icon-minus {
+                    display: inline-block;
+                    padding: 3px;
+                    position: absolute;
+                    top: 5px;
+                    right: 5px;
+                    font-size: x-small;
+                }
             }
             .gender-btn {
                 grid-column: 1/3;
+            }
+            .hidden {
+                display: none;
             }
         }
         &__level {
@@ -114,6 +127,7 @@ $mainBeige: #fff4e9;
 }
 
 .edit-modal {
+    z-index: 999;
    padding: 30px 40px;
     display: flex;
     justify-content: center;

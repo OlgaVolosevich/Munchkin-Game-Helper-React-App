@@ -56,13 +56,13 @@ class Form extends Component {
         title: "Расса",
         options: [...raceOptions],
         name: "gameRace",
-        value: gameRace.first,
+        value: gameRace["first"],
       },
       {
         title: "Класс",
         options: [...classOptions],
         name: "gameClass",
-        value: gameClass.first,
+        value: gameClass["second"],
       },
     ];
     return (
