@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Munchkin-Game-Helper-React-App/static/css/main.3a1525be.chunk.css",
-    "main.js": "/Munchkin-Game-Helper-React-App/static/js/main.5b2013da.chunk.js",
-    "main.js.map": "/Munchkin-Game-Helper-React-App/static/js/main.5b2013da.chunk.js.map",
+    "main.js": "/Munchkin-Game-Helper-React-App/static/js/main.2a2e0210.chunk.js",
+    "main.js.map": "/Munchkin-Game-Helper-React-App/static/js/main.2a2e0210.chunk.js.map",
     "runtime-main.js": "/Munchkin-Game-Helper-React-App/static/js/runtime-main.3ee296c9.js",
     "runtime-main.js.map": "/Munchkin-Game-Helper-React-App/static/js/runtime-main.3ee296c9.js.map",
     "static/js/2.d71935d0.chunk.js": "/Munchkin-Game-Helper-React-App/static/js/2.d71935d0.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.3ee296c9.js",
     "static/js/2.d71935d0.chunk.js",
     "static/css/main.3a1525be.chunk.css",
-    "static/js/main.5b2013da.chunk.js"
+    "static/js/main.2a2e0210.chunk.js"
   ]
 }
