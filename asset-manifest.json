@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Munchkin-Game-Helper-React-App/static/css/main.3a1525be.chunk.css",
+    "main.js": "/Munchkin-Game-Helper-React-App/static/js/main.5b2013da.chunk.js",
+    "main.js.map": "/Munchkin-Game-Helper-React-App/static/js/main.5b2013da.chunk.js.map",
+    "runtime-main.js": "/Munchkin-Game-Helper-React-App/static/js/runtime-main.3ee296c9.js",
+    "runtime-main.js.map": "/Munchkin-Game-Helper-React-App/static/js/runtime-main.3ee296c9.js.map",
+    "static/js/2.d71935d0.chunk.js": "/Munchkin-Game-Helper-React-App/static/js/2.d71935d0.chunk.js",
+    "static/js/2.d71935d0.chunk.js.map": "/Munchkin-Game-Helper-React-App/static/js/2.d71935d0.chunk.js.map",
+    "index.html": "/Munchkin-Game-Helper-React-App/index.html",
+    "static/css/main.3a1525be.chunk.css.map": "/Munchkin-Game-Helper-React-App/static/css/main.3a1525be.chunk.css.map",
+    "static/js/2.d71935d0.chunk.js.LICENSE.txt": "/Munchkin-Game-Helper-React-App/static/js/2.d71935d0.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/Munchkin-Game-Helper-React-App/static/media/bg.2871780f.png",
+    "static/media/style.css": "/Munchkin-Game-Helper-React-App/static/media/icomoon.f06af889.eot"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3ee296c9.js",
+    "static/js/2.d71935d0.chunk.js",
+    "static/css/main.3a1525be.chunk.css",
+    "static/js/main.5b2013da.chunk.js"
+  ]
+}
