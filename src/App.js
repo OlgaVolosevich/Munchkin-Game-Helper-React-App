@@ -35,18 +35,18 @@ class App extends Component {
     if (!players.length) {
       let { isGameStarted } = this.state;
       isGameStarted = false;
-      this.setState({
+      return this.setState({
         players,
         isGameStarted,
       });
     } else {
-      this.setState({
+      return this.setState({
         players,
       });
     }
   };
-  checkPlayersNumber = (number) => {
-    switch (number) {
+  checkPlayersNumber = (flag) => {
+    switch (flag) {
       case "min":
         return this.state.players.length >= gameInfo.minPlayersNumber;
       case "max":
@@ -59,19 +59,19 @@ class App extends Component {
     const warning = { ...this.state.warning };
     warning.isNeeded = true;
     warning.value = text || "Упс! Что-то пошло не так!";
-    this.setState({
+    return this.setState({
       warning,
     });
   };
   closeWarning = () => {
     const warning = { ...this.state.warning };
     warning.isNeeded = false;
-    this.setState({
+    return this.setState({
       warning,
     });
   };
   resetGame = () => {
-    this.setState({
+    return this.setState({
       ...newGameState,
     });
   };
@@ -113,7 +113,7 @@ class App extends Component {
       players,
     });
   };
-  editPlayerInfo = (id, changingField, value, flag = "first") => {
+  editPlayerInfo = (id, changingField, value, flag) => {
     const players = [...this.state.players];
     const player = players.filter((player) => player.id === id)[0];
     if (

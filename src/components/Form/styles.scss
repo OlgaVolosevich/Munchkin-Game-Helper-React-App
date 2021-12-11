@@ -18,7 +18,7 @@ $mainBeige: #fff4e9;
     align-items: center;
     max-width: 100%;
     .form {
-        min-width: 300px;
+        width: 100%;
         border: 10px solid $mainRed;
         border-radius: 20px;
         padding: 20px 15px;
@@ -97,3 +97,21 @@ $mainBeige: #fff4e9;
         }
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .preset-container {
+        .form {
+            border: 5px solid $mainRed;
+            &__name-input {
+                padding-bottom: 35px;
+                input {
+                    border-bottom: 2px solid $mainRed;
+                }
+            }
+            .form__error-message {
+                font-size: small;
+            }
+        }
+    }
+}
+

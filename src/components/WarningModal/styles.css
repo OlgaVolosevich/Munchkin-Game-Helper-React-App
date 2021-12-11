@@ -1,5 +1,5 @@
 .warning {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -42,5 +42,11 @@
 .warning__close-btn:hover {
   background-color: #4b1615;
   color: #fff4e9;
+}
+
+@media only screen and (max-width: 400px) {
+  .warning {
+    width: 100%;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

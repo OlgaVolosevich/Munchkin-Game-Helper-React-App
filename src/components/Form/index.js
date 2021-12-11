@@ -53,7 +53,7 @@ class Form extends Component {
     const { name, gameClass, gameRace } = this.state.player;
     const gameOptions = [
       {
-        title: "Расса",
+        title: "Раса",
         options: [...raceOptions],
         name: "gameRace",
         value: gameRace["first"],
@@ -62,7 +62,7 @@ class Form extends Component {
         title: "Класс",
         options: [...classOptions],
         name: "gameClass",
-        value: gameClass["second"],
+        value: gameClass["first"],
       },
     ];
     return (

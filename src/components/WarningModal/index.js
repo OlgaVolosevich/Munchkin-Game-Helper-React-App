@@ -1,7 +1,7 @@
 import "./styles.css";
 function WarningModal(props) {
   const { text, closeWarning, winner, manageGame } = props;
-  const content = winner ? `Победитель: манчкин ${winner.name}!` : text;
+  const content = winner ? `Победитель: ${winner.name}!` : text;
   const buttonText = winner ? "Сыграть снова" : "ОК";
   const clickHandler = (event) => {
     if (event.target.innerText === "Сыграть снова") {

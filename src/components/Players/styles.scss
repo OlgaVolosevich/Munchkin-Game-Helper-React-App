@@ -13,7 +13,7 @@ $mainBeige: #fff4e9;
 }
 
 @mixin modal {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -29,6 +29,7 @@ $mainBeige: #fff4e9;
     .empty-list {
         text-align: center;
         color: #4b1615cc;
+        font-weight: bolder;
     }
     &__names {
         padding-left: 40px;
@@ -47,17 +48,24 @@ $mainBeige: #fff4e9;
 
 .players-container.solo {
     grid-column: 1/3;
-    min-width: 350px;
+    width: 90vw;
     row-gap: 20px;
     padding: 0;
 }
 
 .players-cards {
-    width: 100%;
-    background-color: $mainBeige;
-    border: 10px solid $mainRed;
-    border-radius: 20px;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   row-gap: 15px;
+   column-gap: 15px;
     &__item {
+        display: grid;
+        grid-template-rows: 50px 1fr 60px;
+        width: 300px;
+        border-radius: 20px;
+        background-color: $mainBeige;
+        border: 5px solid $mainRed;
         padding: 10px 20px;
         &__name, &__game-info, &__level {
             padding: 5px 0;
@@ -77,8 +85,6 @@ $mainBeige: #fff4e9;
         &__game-info {
             display: flex;
             flex-direction: column;
-           /* grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;*/
             row-gap: 5px;
             column-gap: 5px;
             .race-btn, .class-btn, .gender-btn {
@@ -161,5 +167,35 @@ $mainBeige: #fff4e9;
             border: 2px solid $mainRed;
             padding: 5px;
         }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .players-container {
+        .empty-list {
+            color: black;
+        }
+        &__names {
+            padding-left: 0px;
+            li {
+                padding: 10px 5px;
+            }
+        }
+    }
+    .players-container.solo {
+        width: 60vw;
+        .players-cards {
+            &__item {
+                padding: 10px;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 400px) {
+    .players-container.solo {
+        width: 100%;
+    }
+    .edit-modal {
+        width: 100%;
     }
 }

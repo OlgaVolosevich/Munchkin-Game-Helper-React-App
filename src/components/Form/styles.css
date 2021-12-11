@@ -16,7 +16,7 @@
 }
 
 .preset-container .form {
-  min-width: 300px;
+  width: 100%;
   border: 10px solid #4b1615;
   border-radius: 20px;
   padding: 20px 15px;
@@ -129,5 +129,20 @@
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
+}
+
+@media only screen and (max-width: 600px) {
+  .preset-container .form {
+    border: 5px solid #4b1615;
+  }
+  .preset-container .form__name-input {
+    padding-bottom: 35px;
+  }
+  .preset-container .form__name-input input {
+    border-bottom: 2px solid #4b1615;
+  }
+  .preset-container .form .form__error-message {
+    font-size: small;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

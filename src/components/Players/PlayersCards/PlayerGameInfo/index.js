@@ -150,6 +150,7 @@ class PlayerGameInfo extends Component {
     const { gameRace, gameClass, gender } = this.props;
     const { isInfoEdited, modal } = this.state;
     return (
+      <>
       <div className="players-cards__item__game-info">
         <button className="race-btn first" onClick={this.clickHandler}>
           {gameRace["first"]}
@@ -190,8 +191,9 @@ class PlayerGameInfo extends Component {
         <button className="gender-btn" onClick={this.clickHandler}>
           {gender || "Пол не указан"}
         </button>
-        {isInfoEdited && modal}
       </div>
+      {isInfoEdited && modal}
+      </>
     );
   }
 }
